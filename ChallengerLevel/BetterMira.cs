@@ -6,6 +6,7 @@ using static ChallengerMod.Unity;
 using static ChallengerMod.Roles;
 using static ChallengerMod.ColorTable;
 using static ChallengerMod.Challenger;
+using UnityEngine.AddressableAssets;
 
 namespace ChallengerLevel.Mira
 {
@@ -39,7 +40,7 @@ namespace ChallengerLevel.Mira
 
         public static readonly Sprite NewTex1 = repairIco;
 
-
+       
 
 
 
@@ -135,6 +136,8 @@ namespace ChallengerLevel.Mira
                 }
             }
         }
+       
+       
 
         private static void ApplyChanges(ShipStatus instance)
         {
@@ -143,6 +146,7 @@ namespace ChallengerLevel.Mira
                 FindMiraObjects();
                 AdjustMira();
             }
+            
         }
 
         public static void FindMiraObjects()
@@ -160,10 +164,10 @@ namespace ChallengerLevel.Mira
                 MooveColliderDropShip();
                 MooveColliderSkybridge();
                 MooveColliderDecontam();
-               MooveFixWiringConsole2();
-               MoovelaunchGas();
-               MoovedivertElevStand();
-               Moovelaunchpadright();
+                MooveFixWiringConsole2();
+                MoovelaunchGas();
+                MoovedivertElevStand();
+                Moovelaunchpadright();
                 MooveDeconVent();
                 MooveYHallRightVent();
                 MooveLockerVent();
