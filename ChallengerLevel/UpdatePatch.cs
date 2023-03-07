@@ -7,6 +7,13 @@ using static ChallengerMod.Challenger;
 using InnerNet;
 using System.Collections.Generic;
 using Hazel;
+using Epic.OnlineServices;
+using System.Linq;
+using UnityEngine.UI;
+using UnityEngine.UIElements.UIR;
+using Reactor.Extensions;
+using Rewired.Utils.Platforms.Windows;
+using JetBrains.Annotations;
 
 namespace ChallengerLevel
 {
@@ -214,7 +221,7 @@ namespace ChallengerLevel
                         }
                     }
 
-                    
+
 
                 }
                 else if (ShipStatus.Instance.Type == ShipStatus.MapType.Hq)
@@ -244,6 +251,20 @@ namespace ChallengerLevel
                         var Sprite = GameObject.Find("MiraShip(Clone)").transform.FindChild("LaunchPad").transform.FindChild("launch-front");
                         Sprite.GetComponent<SpriteRenderer>().sprite = TexBGMira;
 
+                        if (GameObject.Find("MiraShip(Clone)/MedBay/medBayBed (1)"))
+                        {
+                            GameObject.Find("MiraShip(Clone)/MedBay/medBayBed (1)").gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                        }
+                        if (GameObject.Find("MiraShip(Clone)/MedBay/medBayBed"))
+                        {
+                            GameObject.Find("MiraShip(Clone)/MedBay/medBayBed").gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                        }
+                        if (GameObject.Find("MiraShip(Clone)/Comms/comms-top/SurvLogConsole"))
+                        {
+                            GameObject SurvLogObj = GameObject.Find("MiraShip(Clone)/Comms/comms-top/SurvLogConsole").gameObject;
+                            BoxCollider2D SurvLogObjBoxCollider2D = SurvLogObj.GetComponent<BoxCollider2D>();
+                            SurvLogObjBoxCollider2D.size = new Vector3(0f, 0f, 0f);
+                        }
                     }
                     else // V0
                     {
@@ -268,6 +289,11 @@ namespace ChallengerLevel
                         {
                             GameObject.Find("LobbyLevel_GameObject2").gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
                         }
+                        if (GameObject.Find("panel_vitals(Clone)"))
+                        {
+                            GameObject.Find("panel_vitals(Clone)").gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                        }
+
                     }
                 }
                 else
@@ -294,34 +320,28 @@ namespace ChallengerLevel
                     }
                 }
             }
-               /*  else
-                {
+            /*  else
+             {
 
-                }
-            }
-           if (AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Started)
-            {
+             }
+         }
+        if (AmongUsClient.Instance.GameState == InnerNetClient.GameStates.Started)
+         {
 
-                if (Mira)
-                {
-                    if (ChallengerMod.HarmonyMain.BetterMapHQ.GetValue() == 0)// V1
-                    {
-
-
-                        
-                }
-                else
-                {
-
-                }
-
-            }*/
+             if (Mira)
+             {
+                 if (ChallengerMod.HarmonyMain.BetterMapHQ.GetValue() == 0)// V1
+                 {
 
 
 
-        
+             }
+             else
+             {
 
-     
+             }
+
+         }*/
 
 
 
@@ -329,14 +349,21 @@ namespace ChallengerLevel
 
 
 
-            }
+
+
 
 
 
 
         }
-        
+
+
+
+
     }
+}
+    
+
 
 
     

@@ -25,8 +25,8 @@ using System.Collections.Generic;
 using BepInEx.Logging;
 using System.Reflection;
 using UnhollowerRuntimeLib;
-
-
+using LevelPatcher;
+using UnityEngine.SceneManagement;
 
 namespace ChallengerLevel
 { 
@@ -42,7 +42,7 @@ namespace ChallengerLevel
         public static System.Version Version = System.Version.Parse(VersionString);
 
         public const string Id = "Config.ChallengerLevel";
-        public static HarmonyMain Instance { get { return PluginSingleton<HarmonyMain>.Instance; } }
+        public static HarmonyMain Instance { get; private set; }
         // static List<CooldownButton> impostorbuttons = new List<CooldownButton>();
 
         public Harmony Harmony { get; } = new Harmony(Id);
@@ -53,14 +53,22 @@ namespace ChallengerLevel
 
         public static ManualLogSource Logger { get; private set; }
 
+       
 
-        
 
 
+       
         public override void Load()
         {
 
+            Instance = this;
 
+            ClassInjector.RegisterTypeInIl2Cpp<VitalPatcher>();
+
+            SceneManager.sceneLoaded += (Action<Scene, LoadSceneMode>)((scene, loadSceneMode) =>
+            {
+                ModManager.Instance.ShowModStamp();
+            });
             //SpritePatches2.Patch();
             Harmony.PatchAll();
         }
