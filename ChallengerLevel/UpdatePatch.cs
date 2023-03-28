@@ -293,6 +293,40 @@ namespace ChallengerLevel
                         {
                             GameObject.Find("panel_vitals(Clone)").gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
                         }
+                        if (GameObject.Find("ladder_electrical(Clone)"))
+                        {
+                            GameObject ladder_electrical = GameObject.Find("ladder_electrical(Clone)").gameObject;
+                            ladder_electrical.SetActive(false);
+                            ladder_electrical.active = false;
+                        }
+                        if (GameObject.Find("map_surveillance(Clone)"))
+                        {
+                            GameObject map_surveillance = GameObject.Find("map_surveillance(Clone)").gameObject;
+                            map_surveillance.SetActive(false);
+                            map_surveillance.active = false;
+                        }
+                        if (GameObject.Find("MiraTube"))
+                        {
+                            GameObject MiraTube = GameObject.Find("MiraTube").gameObject;
+                            MiraTube.SetActive(false);
+                            MiraTube.active = false;
+                        }
+                        if (GameObject.Find("Ladder_Balcony"))
+                        {
+                            GameObject Ladder_Balcony = GameObject.Find("Ladder_Balcony").gameObject;
+                            Ladder_Balcony.SetActive(false);
+                            Ladder_Balcony.active = false;
+                        }
+                        if (GameObject.Find("TF_Security"))
+                        {
+                            GameObject TF_Security = GameObject.Find("TF_Security").gameObject;
+                            TF_Security.SetActive(false);
+                            TF_Security.active = false;
+                        }
+                        if (GameObject.Find("BalconyFence2"))
+                        {
+                            GameObject.Find("BalconyFence2").gameObject.transform.localScale = new Vector3(0f, 0f, 0f); 
+                        }
 
                     }
                 }

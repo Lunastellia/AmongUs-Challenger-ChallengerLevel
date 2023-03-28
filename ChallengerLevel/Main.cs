@@ -37,7 +37,7 @@ namespace ChallengerLevel
     public class HarmonyMain : BasePlugin
     {
 
-        public const string VersionString = "5.2.0";
+        public const string VersionString = "5.2.3";
         
         public static System.Version Version = System.Version.Parse(VersionString);
 
@@ -63,7 +63,7 @@ namespace ChallengerLevel
 
             Instance = this;
 
-            ClassInjector.RegisterTypeInIl2Cpp<VitalPatcher>();
+            ClassInjector.RegisterTypeInIl2Cpp<PrefabsPatcher>();
 
             SceneManager.sceneLoaded += (Action<Scene, LoadSceneMode>)((scene, loadSceneMode) =>
             {

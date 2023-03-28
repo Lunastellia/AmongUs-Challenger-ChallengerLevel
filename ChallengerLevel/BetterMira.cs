@@ -27,7 +27,12 @@ namespace ChallengerLevel.Mira
         public static readonly Vector3 admintablelowerNewPos = new Vector3(13.4159f, 15.4564f, 4f);
         public static readonly Vector3 SwitchConsoleNewPos = new Vector3(24.202f, 11.9755f, 2f);
         public static readonly Vector3 launchfrontNewPos = new Vector3(8.8201f, 10.2215f, 7.999f);
-        public static readonly Vector3 SecurityLoggerNewPos = new Vector3(22.6845f, 13.189f, 19f); //-227.3155 13.189 18
+        public static readonly Vector3 SecurityLoggerNewPos = new Vector3(22.6845f, 13.189f, 19f);
+        public static readonly Vector3 OfficeTableNewPos = new Vector3(14.6812f, 21.1325f, 2f);
+        public static readonly Vector3 GarbageConsoleNewPos = new Vector3(14.117f, -2.9111f, 3f);
+        
+
+
 
         // launch-front
         public const float launchfrontNewScaleX = 1f;
@@ -49,11 +54,11 @@ namespace ChallengerLevel.Mira
         public static readonly Vector3 YHallRightVentNewPos = new Vector3(23.6613f, 14.3152f, 1f);//-228.7387 14.2613
         public static readonly Vector3 LockerVentNewPos = new Vector3(9.1753f, 4.6213f, 1f); //(0.0953f, 2.6313f, 1f);
         public static readonly Vector3 DeconVentNewPos = new Vector3(2.1799f, 7.8f, 1f);//-247.8201 7.8
-        public static readonly Vector3 LaunchVentNewPos = new Vector3(3.0767f, 0.4267f, 1f);//-246.9233 0.4267
+        public static readonly Vector3 LaunchVentNewPos = new Vector3(2.2658f, 17.4216f, 1f);//2,2658 17,4216 1
 
 
 
-        
+
         public static GameObject RoomDropShip;
         public static GameObject ColliderDropShip;
         public static GameObject RoomSkybridge;
@@ -75,11 +80,13 @@ namespace ChallengerLevel.Mira
         public static Console divertElevStand;
         public static Console EnterCodeConsole;
         public static Console SwitchConsole;
+        public static Console GarbageConsole;
+        public static Console DataConsole;
         public static GameObject launchpadright; //launch-pad-right
-
+        public static GameObject OfficeTable; // Com Office
         
 
-       
+
 
         public static Vent BalconyVent;
         public static Vent MedVent;
@@ -168,7 +175,9 @@ namespace ChallengerLevel.Mira
                 MoovelaunchGas();
                 MoovedivertElevStand();
                 Moovelaunchpadright();
+                MooveOfficeTable();
                 MooveDeconVent();
+                MooveGarbageConsole();
                 MooveYHallRightVent();
                 MooveLockerVent();
                 MooveLaunchVent();
@@ -177,6 +186,7 @@ namespace ChallengerLevel.Mira
                 MooveSwitchConsole();
                 Moovelaunchfront();
                 MooveSecurityLogger();
+                MooveDataconsole();
 
 
             }
@@ -332,6 +342,22 @@ namespace ChallengerLevel.Mira
                 ColliderDecontam = Object.FindObjectsOfType<GameObject>().ToList()
                     .Find(gameObject => gameObject.name == "Decontam");
             }
+            if (OfficeTable == null)
+            {
+                OfficeTable = Object.FindObjectsOfType<GameObject>().ToList()
+                    .Find(gameObject => gameObject.name == "office-mid");
+            }
+            if (GarbageConsole == null)
+            {
+                GarbageConsole = Object.FindObjectsOfType<Console>().ToList()
+                    .Find(console => console.name == "GarbageConsole");
+            }
+            if (DataConsole == null)
+            {
+                DataConsole = Object.FindObjectsOfType<Console>().ToList()
+                    .Find(console => console.name == "DataConsole");
+            }
+
             var ventsList = Object.FindObjectsOfType<Vent>().ToList();
 
 
@@ -341,7 +367,8 @@ namespace ChallengerLevel.Mira
 
 
             IsObjectsFetched = SecurityLogger != null && RoomDropShip != null && RoomSkybridge != null && ColliderDropShip != null && ColliderSkybridge != null && ColliderDecontam != null
-                && FixWiringConsole2 != null && launchGas != null && divertElevStand != null && launchpadright != null && EnterCodeConsole != null && SwitchConsole != null && admintablelower != null && launchfront != null;
+                && FixWiringConsole2 != null && launchGas != null && divertElevStand != null && launchpadright != null && EnterCodeConsole != null && SwitchConsole != null && admintablelower != null
+                && launchfront != null && OfficeTable != null && GarbageConsole != null && DataConsole != null;
                 
         }
 
@@ -673,10 +700,6 @@ namespace ChallengerLevel.Mira
                 }
                 
             }
-            else
-            {
-
-            }
         }
         public static void MoovedivertElevStand()
         {
@@ -687,10 +710,6 @@ namespace ChallengerLevel.Mira
                     Transform divertElevStandTransform = divertElevStand.transform;
                     divertElevStandTransform.position = divertElevStandNewPos;
                 }
-            }
-            else
-            {
-
             }
         }
 
@@ -704,10 +723,6 @@ namespace ChallengerLevel.Mira
                     EnterCodeConsoleTransform.position = EnterCodeConsoleNewPos;
                 }
             }
-            else
-            {
-
-            }
         }
         public static void Moovelaunchpadright()
         {
@@ -719,11 +734,36 @@ namespace ChallengerLevel.Mira
                     launchpadrightTransform.position = launchpadrightNewPos;
                 }
             }
-            else
+        }
+        public static void MooveOfficeTable()
+        {
+            if (ChallengerOS.Utils.Option.CustomOptionHolder.BetterMapHQ.getSelection() == 1)
             {
-
+                if (OfficeTable.transform.position != OfficeTableNewPos)
+                {
+                    Transform OfficeTableTransform = OfficeTable.transform;
+                    OfficeTableTransform.position = OfficeTableNewPos;
+                }
             }
         }
-        
+        public static void MooveGarbageConsole()
+        {
+            if (ChallengerOS.Utils.Option.CustomOptionHolder.BetterMapHQ.getSelection() == 1)
+            {
+                if (GarbageConsole.transform.position != GarbageConsoleNewPos)
+                {
+                    Transform GarbageConsoleTransform = GarbageConsole.transform;
+                    GarbageConsoleTransform.position = GarbageConsoleNewPos;
+                }
+            }
+        }
+        public static void MooveDataconsole()
+        {
+            if (DataConsole.usableDistance != 1.2f)
+            {
+                DataConsole.usableDistance = 1.2f;
+            }
+        }
+
     }
 }
